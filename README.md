@@ -1,3 +1,3 @@
 # Objetivo
 
-Estudo para contruir um diagrama estilo **Árvore de Conjuntos** (ver [tree clusters](https://observablehq.com/@d3/cluster)).
+Estudo para construir um diagrama estilo **Nós Lincados hierarquicamente** (ver [tree, clusters](https://observablehq.com/@d3/cluster)).
