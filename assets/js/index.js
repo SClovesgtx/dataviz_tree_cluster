@@ -1,8 +1,8 @@
-// function nestListItems(ulElement, items, className) {
-//     ulElement.setAttribute("class", className)
+// function nestdivstItems(divElement, items, className) {
+//     divElement.setAttribute("class", className)
 //     for 
 //     if (!items.?buckets){
-//         return ulElement
+//         return divElement
 //     }
 // }
 
@@ -12,36 +12,38 @@ fetch('./data.json')
     .then(data => {
         const rootElement = document.querySelector('#root')
         const cadeias = data["cadeias"]["buckets"]
-        const firstUl = document.createElement("ul")
-        firstUl.setAttribute("class", "cadeia")
+        const firstDiv = document.createElement("div")
+        firstDiv.setAttribute("id", "cadeias")
         for (let cadeia of cadeias) {
-            let li = document.createElement("li")
-            li.setAttribute("id", cadeia["key"])
-            li.innerHTML = cadeia["key"]
-            firstUl.appendChild(li)
+            let divCadeia = document.createElement("div")
+            divCadeia.setAttribute("id", cadeia["key"])
+            divCadeia.setAttribute("class", "cadeia")
+            divCadeia.innerHTML = `<div class="cadeiaName">${cadeia["key"]}</div>`
             let temas = cadeia["temas"]["buckets"]
-            let ulTemas = document.createElement("ul")
-            ulTemas.setAttribute("class", "tema")
+            let divTemas = document.createElement("div")
+            divTemas.setAttribute("class", "temas")
             for (let tema of temas){
-                let liTema = document.createElement("li")
-                liTema.setAttribute("id", tema["key"])
-                liTema.innerHTML = tema["key"]
+                let divTema = document.createElement("div")
+                divTema.setAttribute("id", tema["key"])
+                divTema.setAttribute("class", "tema")
+                divTema.innerHTML = `<div class="temaName">${tema["key"]}</div>`
                 let subtemas = tema?.subtemas?.buckets
                 if (subtemas) {
-                    let ulSubtemas = document.createElement("ul")
-                    ulSubtemas.setAttribute("class", "subtemas")
+                    let divSubtemas = document.createElement("div")
+                    divSubtemas.setAttribute("class", "subtemas")
                     for (let subtema of subtemas) {
-                        let liSubtema = document.createElement("li")
-                        liSubtema.setAttribute("id", subtema["key"])
-                        liSubtema.innerHTML = subtema["key"]
-                        ulSubtemas.appendChild(liSubtema)
+                        let divSubtema = document.createElement("div")
+                        divSubtema.setAttribute("id", subtema["key"])
+                        divSubtema.setAttribute("class", "subtema")
+                        divSubtema.innerHTML = subtema["key"]
+                        divSubtemas.appendChild(divSubtema)
                     }
-                    liTema.appendChild(ulSubtemas)
+                    divTema.appendChild(divSubtemas)
                 }
-                ulTemas.appendChild(liTema)
+                divCadeia.appendChild(divTema)
             }
-            firstUl.appendChild(ulTemas)
+            firstDiv.appendChild(divCadeia)
         };
 
-        rootElement.appendChild(firstUl)
+        rootElement.appendChild(firstDiv)
     });
