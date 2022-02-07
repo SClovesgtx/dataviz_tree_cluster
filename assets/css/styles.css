@@ -37,6 +37,7 @@ ul {
     margin: 5px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
+    border-bottom: solid 1px royalblue;
 }
 
 .cadeiaName, .tema {
@@ -59,6 +60,7 @@ ul {
     grid-column: 2 / 6;
     display: grid;
     padding: 10px;
+    border-bottom: solid 1px red;
 }
 
 .temaName {
