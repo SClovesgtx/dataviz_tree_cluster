@@ -1,29 +1,55 @@
 
+function createDiv(className='', idName='', value=''){
+    const div = document.createElement("div")
+    if (className != ''){
+        div.setAttribute("class", className)
+    } 
+    if (idName != '') {
+        div.setAttribute("id", idName)
+    } 
+    if (value != '') {
+        div.innerText = value
+    }
+    return div
+}
+
+function cleanItemName(stringValue){
+    // replace 'spaces' and '/' for '-'
+    return stringValue.replace(/[ \/]/gm, '-')
+}
+
+function createId(valueList=[]){
+    return valueList.join('-')
+}
+
+
 // https://github.com/musclesoft/jquery-connections/wiki
 fetch('./data.json')
     .then(response => response.json())
     .then(data => {
         const rootElement = document.querySelector('#root')
         const cadeias = data["cadeias"]["buckets"]
-        const firstDiv = document.createElement("div")
-        firstDiv.setAttribute("id", "cadeias")
+        const firstDiv = createDiv(className="cadeias")
         let cadeiaNumber = 0
         for (let cadeia of cadeias) {
-            let divCadeia = document.createElement("div")
-            divCadeia.setAttribute("id", cadeia["key"])
-            divCadeia.setAttribute("class", "cadeia")
-            let cadeiaName = cadeia['key'].replace(/[ \/]/gm, '-')
-            let cadeiaId = `cadeia-${cadeiaName}-${cadeiaNumber+=1}`
-            divCadeia.innerHTML = `<div id='${cadeiaId}' class="cadeiaName">${cadeia["key"]}</div>`
+            cadeiaNumber += 1
+            let divCadeia = createDiv(
+                                className="cadeia", 
+                                idName=cadeia["key"]
+                            )
+            let cadeiaName = cleanItemName(cadeia['key'])
+            let cadeiaId = createId(['cadeia', cadeiaName, cadeiaNumber])
+            let divCadeiaName = createDiv(
+                                className='cadeiaName',
+                                idName=cadeiaId,
+                                value=cadeia["key"]
+                            )
+            divCadeia.appendChild(divCadeiaName)
             let temas = cadeia["temas"]["buckets"]
-            let divTemas = document.createElement("div")
-            divTemas.setAttribute("class", "temas")
             let temaNumber = 0
             for (let tema of temas){
-                let divTema = document.createElement("div")
-                divTema.setAttribute("id", tema["key"])
-                divTema.setAttribute("class", "tema")
-                let temaName = tema['key'].replace(/[ \/]/gm, '-')
+                let temaName = cleanItemName(tema['key'])
+                let divTema = createDiv(className="tema", idName=temaName)
                 let temaId = `${cadeiaName}-${temaName}-${temaNumber+=1}`
                 divTema.innerHTML = `<div id='${temaId}' class="temaName">${tema["key"]}</div>`
                 let subtemas = tema?.subtemas?.buckets

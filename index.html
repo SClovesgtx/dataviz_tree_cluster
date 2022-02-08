@@ -1,35 +1,22 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Árvore de Clusters</title>
-    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script src="./assets/js/jquery.connections.js"></script>
-    <link rel="stylesheet" href="./assets/css/styles.css">
-</head>
-<body>
-    <div id="root">
-        
-    </div>
-</body>
-<script src="./assets/js/index.js"></script>
-<!-- <script>
-    fetch('./data.json')
-        .then(response => response.json())
-        .then(data => {
-            const cadeias = data["cadeias"]["buckets"]
-            for (let cadeia of cadeias){
-                let temas = cadeia["temas"]["buckets"]
-                let cadeiaId = `cadeia-${cadeia["key"].replace(/[ \/]/gm, '-').toLowerCase()}`
-                for (let tema of temas){
-                    let temaId = `tema-${tema["key"].replace(/[ \/]/gm, '-').toLowerCase()}`
-                    let query = `#${cadeiaId}, #${temaId}`
-                    console.log(query)
-                    $(query).connections();
-                }
-            }
-        })
-  </script> -->
+
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Árvore de Clusters</title>
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="./assets/js/jquery.connections.js"></script>
+        <link rel="stylesheet" href="./assets/css/styles.css">
+    </head>
+
+    <body>
+        <div id="root">
+            
+        </div>
+    </body>
+
+    <script src="./assets/js/index.js"></script>
+    
 </html>
